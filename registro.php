@@ -38,7 +38,7 @@ ini_set('error_reporting',0);
         <span class="glyphicon glyphicon-star form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" name="correo" class="form-control" placeholder="Email" value="<?php echo $_POST['email']; ?>" required>  
+        <input type="email" name="correo" class="form-control" placeholder="Email" value="<?php echo $_POST['correo']; ?>" required>  
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -50,7 +50,7 @@ ini_set('error_reporting',0);
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="repcontrasena" class="form-control" placeholder="Repita la contraseña" required>
+        <input type="password" name="repcontrasena" class="form-control" placeholder="Confirme la contraseña" required>
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
@@ -68,7 +68,57 @@ ini_set('error_reporting',0);
         <!-- /.col -->
       </div>
     </form>
+    <?php
+      if(isset($_POST['registrar'])){
+        $nombre = mysqli_real_escape_string($conexion,$_POST['nombre']);
+        $correo = mysqli_real_escape_string($conexion,$_POST['correo']);
+        $usuario = mysqli_real_escape_string($conexion,$_POST['usuario']);
+        $contrasena = mysqli_real_escape_string($conexion,$_POST['contrasena']);
+        $repcontrasena = mysqli_real_escape_string($conexion,$_POST['repcontrasena']);
 
+        $comprobarusuario = mysqli_num_rows(mysqli_query($conexion, "SELECT nombre_de_usuario FROM user WHERE nombre_de_usuario = '$usuario'"));
+        $comprobarcorreo = mysqli_num_rows(mysqli_query($conexion, "SELECT correo_electronico FROM user WHERE correo_electronico = '$correo'"));
+        
+        
+        if($comprobarusuario >= 1) { ?>
+        <br>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            El nombre de usuario está en uso, por favor escoja otro
+        </div>
+        <?php
+        } else{
+          if($comprobarcorreo >= 1) { ?>
+            <br>
+            <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              El correo ya está en uso por favor escoja otro o verifique si tiene una cuenta
+            </div>
+            <?php
+          } else{
+            if($contrasena != $repcontrasena){?>
+              <br>
+              <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Las contraseñas no coinciden
+              </div>
+              <?php
+            } else{
+              $insertar = mysqli_query($conexion, "INSERT INTO user (nombre_completo, nombre_de_usuario, correo_electronico, contrasena, fecha_registro) VALUES ('$nombre','$usuario','$correo','$contrasena',NOW())");
+            }
+            if($insertar){?>
+              <br>
+              <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Se ha registrado correctamente
+              </div>
+              <?php
+            }
+          }
+        }
+      }
+        
+    ?>
     <br>
     <a href="login.php" class="text-center">Tengo actualmente una cuenta</a>
   </div>
