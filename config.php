@@ -4,7 +4,7 @@ $db_user="root";
 $db_password="";
 $db="redsocial";
 
-$connect = mysqli_connect($host,$db_user,$db_password);
-if(!$connect)
+$conexion = mysqli_connect($host,$db_user,$db_password,$db);
+if(!$conexion)
     echo("No se conecto la base de datos");
 ?>
