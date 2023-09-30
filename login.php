@@ -25,18 +25,11 @@ if(isset($_SESSION['usuario']))
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>Facebook</b>2</a>
+    <a href=""><b>Facebook</b> 2</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -79,8 +72,9 @@ if(isset($_SESSION['usuario']))
             {
                 if($usuario = $row['nombre_de_usuario']&& $contrasena = $row['contrasena'])
                 {
-                    $_SESSION['usuario'] = $usuario;
+                    $_SESSION['usuario'] = $row['nombre_de_usuario'];
                     $_SESSION['id'] = $row['id_User'];
+                    $_SESSION['avatar'] = $row['avatar'];
                     header('Location: index.php');
                     echo 'Los datos se han ingresado correctamente';
                 }
@@ -95,7 +89,7 @@ if(isset($_SESSION['usuario']))
     <br>
 
     <a href="#">Olvidé mi contraseña</a><br>
-    <a href="registro.php" class="text-center">Registrarme en Facebook2</a>
+    <a href="registro.php" class="text-center">Registrarme en Facebook 2</a>
 
   </div>
   <!-- /.login-box-body -->

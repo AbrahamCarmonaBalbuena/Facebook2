@@ -104,7 +104,7 @@ ini_set('error_reporting',0);
               </div>
               <?php
             } else{
-              $insertar = mysqli_query($conexion, "INSERT INTO user (nombre_completo, nombre_de_usuario, correo_electronico, contrasena, fecha_registro) VALUES ('$nombre','$usuario','$correo','$contrasena',NOW())");
+              $insertar = mysqli_query($conexion, "INSERT INTO user (nombre_completo, nombre_de_usuario, correo_electronico, contrasena, fecha_registro, avatar) VALUES ('$nombre','$usuario','$correo','$contrasena',NOW(),'defect.jpg')");
             }
             if($insertar){?>
               <br>
