@@ -10,7 +10,7 @@ function Headerb ()
     <!-- Logo -->
     <a href="index.php" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Facebook </b>2</span>
+      <span class="logo-lg"><b>Raimbook </b></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->

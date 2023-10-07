@@ -12,7 +12,7 @@ if(isset($_SESSION['usuario']))
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Bienvenido a Facebook 2</title>
+  <title>Bienvenido a Raimbook</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -29,11 +29,11 @@ if(isset($_SESSION['usuario']))
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>Facebook</b> 2</a>
+    <a href=""><b>Raimbook</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Bienvenido a Facebook 2</p>
+    <p class="login-box-msg">Bienvenido a Raimbook</p>
 
     <form action="" method="post">
       <div class="form-group has-feedback">
@@ -89,7 +89,7 @@ if(isset($_SESSION['usuario']))
     <br>
 
     <a href="#">Olvidé mi contraseña</a><br>
-    <a href="registro.php" class="text-center">Registrarme en Facebook 2</a>
+    <a href="registro.php" class="text-center">Registrarme en Raimbook</a>
 
   </div>
   <!-- /.login-box-body -->

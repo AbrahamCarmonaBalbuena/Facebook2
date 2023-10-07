@@ -13,7 +13,7 @@ if(!isset($_SESSION['usuario']))
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Facebook 2</title>
+  <title>Raimbook</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -101,7 +101,36 @@ if(!isset($_SESSION['usuario']))
 
                       <button type="submit" name="publicar" class="btn btn-primary btn-flat">Publicar</button>
                     </div>
-                  </form>     
+                  </form>
+                  <?php
+                  if(isset($_POST['publicar'])) 
+                  {
+                    $publicacion = mysqli_real_escape_string($conexion,$_POST['publication']);
+
+                    $result = mysqli_query($conexion,"SHOW TABLE STATUS WHERE `Name` = 'publication'");
+                    $data = mysqli_fetch_assoc($result);
+                    $next_increment = $data['Auto_increment'];
+
+                    $alea = substr(strtoupper(md5(microtime(true))), 0,12);
+                    $code = $next_increment.$alea;
+
+                    $type = 'jpg';
+                    $rfoto = $_FILES['foto']['tmp_name'];
+                    $name = $code.".".$type;
+
+                    iF(is_uploaded_file($rfoto)){
+                      $destino = "publicaciones/".$name;
+                      $nombre = $name;
+                      copy($rfoto,$destino);
+
+                    }
+                    else{
+                      $nombre = '';
+                    }
+                    $subir = mysqli_query($conexion, "INSERT INTO publication (usuario,fecha,contenido,imagen,comentarios) VALUES ('".$_SESSION['id']."',NOW(),'$publicacion','$nombre','1')");
+                    if($subir) {echo '<script>window.location="index.php"</script>';}
+                  }      
+                  ?>
                 </div>
                 <!-- /.box-footer-->
               </div>
@@ -407,6 +436,7 @@ if(!isset($_SESSION['usuario']))
 <!-- FastClick -->
 <script src="plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
+
 <script src="dist/js/app.min.js"></script>
 <!-- Sparkline -->
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
