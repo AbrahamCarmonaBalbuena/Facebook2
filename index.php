@@ -33,8 +33,18 @@ if(!isset($_SESSION['usuario']))
   <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
   <!-- codigo scroll -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/jquery.jscroll.js"></script>
+  <script src="js/jquery.jscroll.js"></script>
   <!-- codigo scroll -->
+  <style type="text/css">
+    .scroll{
+      width: 100%;
+    }
+    .scroll .jscroll-loading{
+      width: 10%;
+      margin: -500px auto;
+    }
+  </style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -105,7 +115,7 @@ if(!isset($_SESSION['usuario']))
                   <?php
                   if(isset($_POST['publicar'])) 
                   {
-                    $publicacion = mysqli_real_escape_string($conexion,$_POST['publication']);
+                    $publicacion = mysqli_real_escape_string($conexion,$_POST['publicacion']);
 
                     $result = mysqli_query($conexion,"SHOW TABLE STATUS WHERE `Name` = 'publication'");
                     $data = mysqli_fetch_assoc($result);
@@ -143,6 +153,7 @@ if(!isset($_SESSION['usuario']))
 
           <!-- codigo scroll -->
           <div class="scroll">
+            <?php require_once 'publicaciones.php' ?>
           </div>
 
             <script>
